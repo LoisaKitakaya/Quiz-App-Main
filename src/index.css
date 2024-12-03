@@ -1,17 +1,44 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth !important;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
-    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-    'Helvetica Neue', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+/* Custom scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px !important; /* Width of the scrollbar */
+  height: 8px !important; /* Height of the scrollbar (for horizontal scroll) */
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px !important; /* Rounded corners on the thumb */
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin !important;
+}
+
+.logo {
+  font-family: "New Amsterdam", sans-serif;
+  font-size: 30px;
+  font-style: normal;
 }

@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import styles from './App.module.css';
+import { Toaster } from "solid-toast";
+import { createEffect } from "solid-js";
+import { theme } from "./utils/themeStore";
+import Footer from "./components/Footer/footer";
+import Navbar from "./components/Navbar/navbar";
 
-function App() {
+const App = (props) => {
+  createEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme.value);
+  });
+
   return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.jsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar />
+
+      <div className="min-h-screen">{props.children}</div>
+
+      <Footer />
+
+      <Toaster position="top-center" />
+    </>
   );
-}
+};
 
 export default App;
