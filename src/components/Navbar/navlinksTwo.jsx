@@ -1,3 +1,5 @@
+import { mainSite } from "../../utils/secrets";
+
 const NavLinksTwo = (props) => {
   return (
     <>
@@ -6,19 +8,19 @@ const NavLinksTwo = (props) => {
         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] w-40 p-2 shadow mt-5 border"
       >
         <li>
-          <a href="/#coach">Coach</a>
+          <a href={`${mainSite}/#coach`}>Coach</a>
         </li>
         <li>
-          <a href="/#quiz">Quiz</a>
+          <a href={`${mainSite}/#quiz`}>Quiz</a>
         </li>
         <li>
-          <a href="/#about">About</a>
+          <a href={`${mainSite}/#about`}>About</a>
         </li>
         <li>
-          <a href="/#faqs">FAQs</a>
+          <a href={`${mainSite}/#faqs`}>FAQs</a>
         </li>
         <li>
-          <a href="/#contact">Contact</a>
+          <a href={`${mainSite}/#contact`}>Contact</a>
         </li>
       </ul>
     </>

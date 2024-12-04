@@ -1,21 +1,23 @@
+import { mainSite } from "../../utils/secrets";
+
 const NavLinksOne = (props) => {
   return (
     <>
       <ul className="menu menu-horizontal px-1 menu-sm">
         <li>
-          <a href="/#coach">Coach</a>
+          <a href={`${mainSite}/#coach`}>Coach</a>
         </li>
         <li>
-          <a href="/#quiz">Quiz</a>
+          <a href={`${mainSite}/#quiz`}>Quiz</a>
         </li>
         <li>
-          <a href="/#about">About</a>
+          <a href={`${mainSite}/#about`}>About</a>
         </li>
         <li>
-          <a href="/#faqs">FAQs</a>
+          <a href={`${mainSite}/#faqs`}>FAQs</a>
         </li>
         <li>
-          <a href="/#contact">Contact</a>
+          <a href={`${mainSite}/#contact`}>Contact</a>
         </li>
       </ul>
     </>

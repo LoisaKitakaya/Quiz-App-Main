@@ -13,12 +13,14 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 }
 
 import App from "./App";
-import Home from "./routes/Home/home";
+import Quiz from "./routes/Quizzes/quizzes";
 
 render(
   () => (
     <Router root={App}>
-      <Route path="/" component={Home} />
+      <Route path="/quizzes">
+        <Route path="/:id" component={Quiz} />
+      </Route>
     </Router>
   ),
   root

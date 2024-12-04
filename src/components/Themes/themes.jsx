@@ -1,6 +1,5 @@
 import { For } from "solid-js";
 import { setAppTheme } from "../../utils/themeStore";
-import ThemeIcon from "../../assets/icons8-theme-94.png";
 
 const themes = [
   { name: "lofi", hexCode: "#ffffff" },
@@ -10,7 +9,7 @@ const themes = [
   { name: "retro", hexCode: "#ece3ca" },
   { name: "coffee", hexCode: "#20161f" },
   { name: "valentine", hexCode: "#fae7f4" },
-  { name: "cyberpunk", hexCode: "#fff248" },
+  // { name: "cyberpunk", hexCode: "#fff248" },
   // { name: "aqua", hexCode: "#345da7" },
   // { name: "pastel", hexCode: "#f3f4f6" },
   // { name: "forest", hexCode: "#228B22" },
@@ -51,7 +50,7 @@ const Themes = (props) => {
           role="button"
           className="btn btn-square btn-sm btn-ghost"
         >
-          <img className="w-full" src={ThemeIcon} alt="theme icon" />
+          <i class="bi bi-palette2 text-2xl"></i>
         </div>
         <ul
           tabIndex={0}
