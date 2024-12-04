@@ -1,14 +1,14 @@
 import { useParams } from "@solidjs/router";
 import { backend } from "../../utils/secrets";
 import NotFound from "../../assets/robot-404.png";
+import { quizState } from "../../utils/trackProgress";
 import { profileStatus } from "../../utils/authStore";
 import Profile from "../../components/Profile/profile";
 import Loading from "../../components/Loading/loading";
 import { getErrorMessage } from "../../utils/responses";
+import { createEffect, createResource } from "solid-js";
 import Metadata from "../../components/Metadata/metadata";
 import Question from "../../components/Question/question";
-import { createEffect, createResource, createSignal } from "solid-js";
-import { quizState } from "../../utils/trackProgress";
 
 const fetchQuestion = async ({ id, index }) => {
   if (index === null || index === undefined) {

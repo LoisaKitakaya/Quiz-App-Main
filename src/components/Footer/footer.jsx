@@ -1,3 +1,4 @@
+import { mainSite } from "../../utils/secrets";
 import { siteTitle } from "../../utils/siteInfo";
 
 const Footer = (props) => {

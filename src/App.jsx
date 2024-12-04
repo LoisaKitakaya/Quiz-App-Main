@@ -3,6 +3,7 @@ import { createEffect } from "solid-js";
 import { theme } from "./utils/themeStore";
 import Footer from "./components/Footer/footer";
 import Navbar from "./components/Navbar/navbar";
+import Modal from "./components/Modal/modal";
 
 const App = (props) => {
   createEffect(() => {
@@ -18,6 +19,8 @@ const App = (props) => {
       <Footer />
 
       <Toaster position="top-center" />
+
+      <Modal />
     </>
   );
 };
