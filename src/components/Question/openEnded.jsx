@@ -4,7 +4,7 @@ import { backend } from "../../utils/secrets";
 import { getErrorMessage } from "../../utils/responses";
 import Results from "./results";
 import Cookies from "js-cookie";
-import { useParams } from "@solidjs/router";
+import { useNavigate, useParams } from "@solidjs/router";
 import { openModal } from "../../utils/modalStore";
 
 const submitOpenEnded = async (data) => {
@@ -49,7 +49,7 @@ const fetchResults = async (data) => {
     body: JSON.stringify(data),
   };
 
-  const url = `${backend}/api/v1/quiz/fetch-quiz-responses`;
+  const url = `${backend}/api/v1/quiz/quiz-ai-analysis`;
 
   try {
     const response = await fetch(url, options);
@@ -78,6 +78,8 @@ const OpenEnded = (props) => {
 
   const params = useParams();
 
+  const navigate = useNavigate();
+
   const [formData, setFormData] = createSignal(null);
 
   const [loading, setLoading] = createSignal(false);
@@ -91,13 +93,6 @@ const OpenEnded = (props) => {
     setLoading(true);
 
     try {
-      //   console.log({
-      //     selected_option: formData(),
-      //     rating: null,
-      //     text: null,
-      //     choice: null,
-      //   });
-
       const result = await fetchResults({
         username: Cookies.get("username"),
         quiz_id: params.id,
@@ -106,7 +101,7 @@ const OpenEnded = (props) => {
       if (result.status && result.status >= 400) {
         toast.error(result.message);
       } else {
-        openModal("Quiz Results", <Results results={result} />);
+        navigate(`/quizzes/${params.id}/ai-analysis`);
       }
     } catch (error) {
       toast.error(
@@ -122,13 +117,6 @@ const OpenEnded = (props) => {
     setLoading(true);
 
     try {
-      //   console.log({
-      //     selected_option: null,
-      //     rating: null,
-      //     text: formData(),
-      //     choice: null,
-      //   });
-
       const result = await submitOpenEnded({
         username: Cookies.get("username"),
         question_id: question.id,

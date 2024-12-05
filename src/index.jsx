@@ -14,12 +14,14 @@ if (import.meta.env.DEV && !(root instanceof HTMLElement)) {
 
 import App from "./App";
 import Quiz from "./routes/Quizzes/quizzes";
+import Analysis from "./routes/Analysis/analysis";
 
 render(
   () => (
     <Router root={App}>
       <Route path="/quizzes">
         <Route path="/:id" component={Quiz} />
+        <Route path="/:id/ai-analysis" component={Analysis} />
       </Route>
     </Router>
   ),
