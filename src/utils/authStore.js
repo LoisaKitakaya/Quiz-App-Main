@@ -35,6 +35,14 @@ const createUserProfile = (username) => {
   Cookies.set("username", username);
 };
 
+const generateRandomName = (firstName, lastName) => {
+  const randomNumber = Math.floor(Math.random() * 90000000) + 10000000;
+
+  const randomName = `${firstName}${lastName}${randomNumber}`;
+
+  return randomName;
+};
+
 export {
   userStatus,
   authState,
@@ -42,4 +50,5 @@ export {
   login,
   logout,
   createUserProfile,
+  generateRandomName,
 };

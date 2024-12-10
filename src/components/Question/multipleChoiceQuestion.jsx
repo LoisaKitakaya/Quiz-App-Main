@@ -5,12 +5,19 @@ import { openModal } from "../../utils/modalStore";
 import { profileStatus } from "../../utils/authStore";
 import { saveAnswer } from "../../utils/trackProgress";
 
-const OpenEnded = (props) => {
+const MultipleChoiceQuestion = (props) => {
   const question = props.question;
-  const [formData, setFormData] = createSignal(null);
 
-  const handleChange = (e) => {
-    setFormData(e.target.value);
+  const [formData, setFormData] = createSignal([]);
+
+  const handleChange = (e, setData, data) => {
+    const { value, checked } = e.target;
+
+    if (checked) {
+      setData([...data(), value]);
+    } else {
+      setData(data().filter((item) => item !== value));
+    }
   };
 
   const handleSubmit = async (e) => {
@@ -20,8 +27,8 @@ const OpenEnded = (props) => {
       saveAnswer({
         username: "",
         question_id: question.id,
-        selected_option: null,
-        text: formData(),
+        selected_option: formData(),
+        text: null,
       });
 
       if (question.has_next) {
@@ -36,19 +43,33 @@ const OpenEnded = (props) => {
 
   return (
     <>
-      {/* {question.question_type === "open_ended" && (
+      {/* {question.question_type === "multiple_choice" && (
         <>
         </>
       )} */}
       <form onSubmit={handleSubmit}>
         <div className="mb-4 mt-6"></div>
 
-        <textarea
-          required
-          onChange={handleChange}
-          placeholder="Your answer here"
-          className="textarea textarea-bordered w-full h-32"
-        ></textarea>
+        <For each={question.options}>
+          {(item) => (
+            <div className="card bg-base-100 w-full rounded-xl mb-4 cursor-pointer border">
+              <div className="card-body p-2 cursor-pointer">
+                <label className="form-control w-full flex flex-row justify-between gap-2 items-center cursor-pointer">
+                  <div className="label">
+                    <span>{item.option}</span>
+                  </div>
+                  <input
+                    type="checkbox"
+                    name="answer"
+                    value={item.id}
+                    onChange={(e) => handleChange(e, setFormData, formData)}
+                    className="checkbox checkbox-md rounded-md cursor-pointer"
+                  />
+                </label>
+              </div>
+            </div>
+          )}
+        </For>
 
         <div className="mb-4 mt-6"></div>
 
@@ -71,4 +92,4 @@ const OpenEnded = (props) => {
   );
 };
 
-export default OpenEnded;
+export default MultipleChoiceQuestion;

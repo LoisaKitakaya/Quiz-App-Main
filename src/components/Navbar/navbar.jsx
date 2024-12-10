@@ -1,27 +1,27 @@
-import Themes from "../Themes/themes";
-import NavLinksTwo from "./navlinksTwo";
-import NavLinksOne from "./navlinksOne";
 import { siteTitle } from "../../utils/siteInfo";
 
 const Navbar = (props) => {
+  const question = props.question;
+
   return (
     <>
-      <div className="navbar bg-base-200 top-0 sticky w-full z-[1]">
+      <div className="navbar bg-base-100 shadow">
         <div className="navbar-start">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-sm btn-ghost lg:hidden">
-              <i class="bi bi-list text-2xl"></i>
+          <Show when={question.has_previous}>
+            <div className="tooltip tooltip-right" data-tip="Previous">
+              <button
+                className="btn btn-sm btn-ghost btn-circle"
+                onClick={props.handlePrevious}
+              >
+                <i class="bi bi-arrow-left text-xl"></i>
+              </button>
             </div>
-            <NavLinksTwo />
-          </div>
-          <a href="/" className="btn btn-sm btn-ghost text-2xl">{siteTitle}</a>
+          </Show>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <NavLinksOne />
+        <div className="navbar-center">
+          <a className="btn btn-sm btn-ghost rounded-lg text-xl">{siteTitle}</a>
         </div>
-        <div className="navbar-end items-center">
-          <Themes />
-        </div>
+        <div className="navbar-end"></div>
       </div>
     </>
   );

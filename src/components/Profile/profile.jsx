@@ -1,8 +1,8 @@
-import { createSignal } from "solid-js";
-import { getErrorMessage } from "../../utils/responses";
-import { backend } from "../../utils/secrets";
 import toast from "solid-toast";
-import { createUserProfile } from "../../utils/authStore";
+import { createSignal } from "solid-js";
+import { backend } from "../../utils/secrets";
+import { getErrorMessage } from "../../utils/responses";
+import { createUserProfile, generateRandomName } from "../../utils/authStore";
 
 const createProfile = async (data) => {
   const options = {
@@ -40,7 +40,6 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     email: "",
-    username: "",
   });
 
   const [loading, setLoading] = createSignal(false);
@@ -59,9 +58,7 @@ const Profile = () => {
         first_name: formData().firstName,
         last_name: formData().lastName,
         email: formData().email,
-        username: formData().username,
-        password: "",
-        confirm_password: "",
+        username: generateRandomName(formData().firstName, formData().lastName),
       });
 
       if (result.status && result.status >= 400) {
@@ -84,99 +81,71 @@ const Profile = () => {
 
   return (
     <>
-      <div className="p-4">
-        <h2 className="text-center text-2xl font-semibold mt-4 mb-8">
-          Create User Profile
-        </h2>
-
-        <div className="flex justify-center items-center">
-          <div className="card bg-base-300 text-base-content w-80 lg:w-96 mb-4">
-            <div className="card-body items-center text-center">
-              <form onSubmit={handleSubmit}>
-                <label className="form-control w-full mb-2">
-                  <div className="label">
-                    <span className="label-text">First Name</span>
-                  </div>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <input
-                      type="text"
-                      className="w-full"
-                      name="firstName"
-                      placeholder="e.g. John"
-                      value={formData().firstName}
-                      onInput={handleChange}
-                      required
-                    />
-                  </label>
-                </label>
-                <label className="form-control w-full mb-2">
-                  <div className="label">
-                    <span className="label-text">Last Name</span>
-                  </div>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <input
-                      type="text"
-                      className="w-full"
-                      name="lastName"
-                      placeholder="e.g. Doe"
-                      value={formData().lastName}
-                      onInput={handleChange}
-                      required
-                    />
-                  </label>
-                </label>
-                <label className="form-control w-full mb-2">
-                  <div className="label">
-                    <span className="label-text">Email</span>
-                  </div>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <input
-                      type="text"
-                      className="w-full"
-                      name="email"
-                      placeholder="e.g. email@example.com"
-                      value={formData().email}
-                      onInput={handleChange}
-                      required
-                    />
-                  </label>
-                </label>
-                <label className="form-control w-full mb-4">
-                  <div className="label">
-                    <span className="label-text">Username</span>
-                  </div>
-                  <label className="input input-bordered flex items-center gap-2">
-                    <input
-                      type="text"
-                      className="w-full"
-                      name="username"
-                      placeholder="e.g. johndoe"
-                      value={formData().username}
-                      onInput={handleChange}
-                      required
-                    />
-                  </label>
-                </label>
-
-                <button
-                  type="submit"
-                  className="btn btn-success w-full"
-                  disabled={loading()}
-                >
-                  <Switch>
-                    <Match when={!loading()}>
-                      <span>Submit</span>
-                    </Match>
-                    <Match when={loading()}>
-                      <span className="loading loading-bars loading-sm"></span>
-                    </Match>
-                  </Switch>
-                </button>
-              </form>
-            </div>
+      <form onSubmit={handleSubmit}>
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">First Name</span>
           </div>
-        </div>
-      </div>
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              className="w-full"
+              name="firstName"
+              placeholder="e.g. John"
+              value={formData().firstName}
+              onInput={handleChange}
+              required
+            />
+          </label>
+        </label>
+        <label className="form-control w-full mb-2">
+          <div className="label">
+            <span className="label-text">Last Name</span>
+          </div>
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              className="w-full"
+              name="lastName"
+              placeholder="e.g. Doe"
+              value={formData().lastName}
+              onInput={handleChange}
+              required
+            />
+          </label>
+        </label>
+        <label className="form-control w-full mb-4">
+          <div className="label">
+            <span className="label-text">Email</span>
+          </div>
+          <label className="input input-bordered flex items-center gap-2">
+            <input
+              type="text"
+              className="w-full"
+              name="email"
+              placeholder="e.g. email@example.com"
+              value={formData().email}
+              onInput={handleChange}
+              required
+            />
+          </label>
+        </label>
+
+        <button
+          type="submit"
+          className="btn btn-success w-full"
+          disabled={loading()}
+        >
+          <Switch>
+            <Match when={!loading()}>
+              <span>Submit</span>
+            </Match>
+            <Match when={loading()}>
+              <span className="loading loading-bars loading-sm"></span>
+            </Match>
+          </Switch>
+        </button>
+      </form>
     </>
   );
 };

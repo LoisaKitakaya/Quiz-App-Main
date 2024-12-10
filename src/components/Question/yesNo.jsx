@@ -152,28 +152,40 @@ const YesNo = (props) => {
             <div className="mb-4 mt-6"></div>
 
             <div>
-              <label className="form-control w-full flex flex-row justify-start gap-2 cursor-pointer items-center">
-                <div className="label">
-                  <span>Yes</span>
+              <div className="card bg-base-100 w-full rounded-xl mb-4 cursor-pointer border">
+                <div className="card-body p-2 cursor-pointer">
+                  <label className="form-control w-full flex flex-row justify-between gap-2 items-center cursor-pointer">
+                    <div className="label">
+                      <span>Yes</span>
+                    </div>
+                    <input
+                      required
+                      type="radio"
+                      name="answer"
+                      value="yes"
+                      onChange={handleChange}
+                      className="radio-md cursor-pointer"
+                    />
+                  </label>
                 </div>
-                <input
-                  type="radio"
-                  name="answer"
-                  value="yes"
-                  onChange={handleChange}
-                />
-              </label>
-              <label className="form-control w-full flex flex-row justify-start gap-2 cursor-pointer items-center">
-                <div className="label">
-                  <span>No</span>
+              </div>
+              <div className="card bg-base-100 w-full rounded-xl mb-4 cursor-pointer border">
+                <div className="card-body p-2 cursor-pointer">
+                  <label className="form-control w-full flex flex-row justify-between gap-2 items-center cursor-pointer">
+                    <div className="label">
+                      <span>No</span>
+                    </div>
+                    <input
+                      required
+                      type="radio"
+                      name="answer"
+                      value="no"
+                      onChange={handleChange}
+                      className="radio-md cursor-pointer"
+                    />
+                  </label>
                 </div>
-                <input
-                  type="radio"
-                  name="answer"
-                  value="no"
-                  onChange={handleChange}
-                />
-              </label>
+              </div>
             </div>
 
             <div className="mb-4 mt-6"></div>
@@ -213,14 +225,6 @@ const YesNo = (props) => {
                   </button>
                 </Match>
               </Switch>
-              <Show when={question.previous_index}>
-                <button
-                  className="btn btn-primary w-full"
-                  onClick={props.handlePrevious}
-                >
-                  Previous
-                </button>
-              </Show>
             </div>
           </form>
         </>
