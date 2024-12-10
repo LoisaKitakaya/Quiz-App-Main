@@ -2,8 +2,6 @@ import { useParams } from "@solidjs/router";
 import { backend } from "../../utils/secrets";
 import NotFound from "../../assets/robot-404.png";
 import { quizState } from "../../utils/trackProgress";
-import { profileStatus } from "../../utils/authStore";
-import Profile from "../../components/Profile/profile";
 import Loading from "../../components/Loading/loading";
 import { getErrorMessage } from "../../utils/responses";
 import { createEffect, createResource } from "solid-js";
@@ -43,8 +41,6 @@ const fetchQuestion = async ({ id, index }) => {
 };
 
 const Quiz = () => {
-  if (profileStatus.status !== "created") return <Profile />;
-
   const params = useParams();
 
   const currentParams = () => ({

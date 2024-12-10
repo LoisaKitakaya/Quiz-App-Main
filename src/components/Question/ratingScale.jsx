@@ -160,6 +160,7 @@ const RatingScale = (props) => {
               <input
                 step="1"
                 value="1"
+                required
                 type="range"
                 className="range"
                 onChange={handleChange}
@@ -212,14 +213,6 @@ const RatingScale = (props) => {
                   </button>
                 </Match>
               </Switch>
-              <Show when={question.previous_index}>
-                <button
-                  className="btn btn-primary w-full"
-                  onClick={props.handlePrevious}
-                >
-                  Previous
-                </button>
-              </Show>
             </div>
           </form>
         </>
